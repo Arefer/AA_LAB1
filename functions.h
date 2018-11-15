@@ -1,0 +1,13 @@
+int factorial(int n);
+int C(int n, int k);
+int** leerArchivo(char* path, int* cantidadNodos, int* cantidadAristas);
+void imprimirGrafo(int** g, int l);
+void printCurrent(int* array, int l, int costo);
+void mostrarResultado(int* camino, int l, int costo);
+int costo(int a, int b, int** g, int numAristas);
+int costoTotal(int* nodos, int cantidadNodos, int** g, int numAristas);
+void volcarCamino(int* array, int l, int* dest);
+void bruteForce(int* nodos, int numNodos, int** g, int numAristas);
+int estaEn(int a, int* b, int tam);
+int* identificarNodos(int** g, int cantidadAristas, int cantidadNodos);
+void liberarGrafo(int** g, int numAristas);
