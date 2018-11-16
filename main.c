@@ -4,6 +4,9 @@
 
 
 int main(int argc, char const *argv[]) {
+    #ifdef DEBUG
+    printf("----- MODO DEBUG -----\n\n");
+    #endif
     int aristas;
     int nodos;
     int** g = leerArchivo("entrada.in", &nodos, &aristas);

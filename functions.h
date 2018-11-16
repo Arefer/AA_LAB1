@@ -11,3 +11,4 @@ void bruteForce(int* nodos, int numNodos, int** g, int numAristas);
 int estaEn(int a, int* b, int tam);
 int* identificarNodos(int** g, int cantidadAristas, int cantidadNodos);
 void liberarGrafo(int** g, int numAristas);
+void exportarResultado(int* camino, int l, int costo);

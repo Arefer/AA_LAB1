@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "functions.h"
-#define DEBUG
 
 /**
  * Calcula el factorial de un numero
@@ -84,6 +83,24 @@ void mostrarResultado(int* camino, int l, int costo){
         i++;
     }
     printf("; Costo: %d\n", costo);
+}
+
+/**
+ * Escribe el resultado en un archivo
+ */
+void exportarResultado(int* camino, int l, int costo){
+    FILE* f = fopen("salida.out", "w");
+    if (f == NULL){
+        printf("Error al escribir el archivo\n");
+        exit(-1);
+    }
+    int i = 0;
+    fprintf(f, "%d\n", costo);
+    while (i < l){
+        fprintf(f, "%d ", camino[i]);
+        i++;
+    }
+    fclose(f);
 }
 
 /**
@@ -194,6 +211,7 @@ void bruteForce(int* nodos, int numNodos, int** g, int numAristas)
         }
         printf("Camino optimo: ");
         mostrarResultado(caminoOptimo, numNodos+2, mejorCosto);
+        exportarResultado(caminoOptimo, numNodos+2, mejorCosto);
         free(caminoOptimo);
 }
 
