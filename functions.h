@@ -9,6 +9,7 @@ int costoTotal(int* nodos, int cantidadNodos, int** g, int numAristas);
 void volcarCamino(int* array, int l, int* dest);
 void bruteForce(int* nodos, int numNodos, int** g, int numAristas);
 int estaEn(int a, int* b, int tam);
+void burbuja(int* lista, int l);
 int* identificarNodos(int** g, int cantidadAristas, int cantidadNodos);
 void liberarGrafo(int** g, int numAristas);
 void exportarResultado(int* camino, int l, int costo);

@@ -159,10 +159,11 @@ void bruteForce(int* nodos, int numNodos, int** g, int numAristas)
 {
         int* caminoOptimo = (int*)malloc(sizeof(int)*(numNodos+2));
         caminoOptimo[0] = 0;
-        caminoOptimo[numNodos-1] = 0;
+        caminoOptimo[numNodos+1] = 0;
         volcarCamino(nodos, numNodos, caminoOptimo);
         int mejorCosto = costoTotal(nodos, numNodos, g, numAristas);
         printCurrent(nodos, numNodos, mejorCosto);
+        // Código de https://stackoverflow.com/questions/3862191/permutation-generator-on-c
         int scratch;
         int lastpermutation = 0;
         int i, j, k, l;
@@ -228,11 +229,32 @@ int estaEn(int a, int* b, int tam){
 }
 
 /**
- * Crea una lista con todos los nodos del grafo
+ * Ordena una lista de enteros por el método burbuja
+ */
+void burbuja(int* lista, int l){
+    int i, j, valor;
+    for (i = 0 ; i < l; i++){
+        for (j = 0 ; j < l-1; j++){
+            if (lista[j] > lista[j+1]){
+                valor = lista[j];
+                lista[j] = lista[j+1];
+                lista[j+1] = valor;
+            }
+        }
+    }
+}
+
+/**
+ * Crea una lista ordenada con todos los nodos del grafo 
  * retorna un arreglo de enteros
  */
 int* identificarNodos(int** g, int cantidadAristas, int cantidadNodos){
     int* nodos = (int*)malloc(sizeof(int)*cantidadNodos);
+    // Rellena el arreglo de nodos con -1 para poder utilizar la funcion
+    // "estaEn", mas abajo (necesita comparar elementos del arreglo nodos).
+    for (int k = 0; k < cantidadNodos; k++){
+        nodos[k] = -1;
+    }
     int i = 0;
     int j = 0;
     while(i < cantidadAristas){
@@ -247,6 +269,8 @@ int* identificarNodos(int** g, int cantidadAristas, int cantidadNodos){
         }
         i++;
     }
+    // 
+    burbuja(nodos, cantidadNodos);
     return nodos;
 }
 
